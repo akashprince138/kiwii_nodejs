@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2026 at 10:43 AM
+-- Generation Time: Jan 13, 2026 at 02:35 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -34,8 +34,9 @@ CREATE TABLE `businesses` (
   `owner_name` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `start_date` date NOT NULL,
-  `valid_till_date` date NOT NULL,
-  `status` enum('active','inactive') NOT NULL,
+  `expiry_date` date NOT NULL,
+  `tax` int(11) NOT NULL DEFAULT '0',
+  `status` enum('Active','Inactive') NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -44,8 +45,14 @@ CREATE TABLE `businesses` (
 -- Dumping data for table `businesses`
 --
 
-INSERT INTO `businesses` (`id`, `business_name`, `owner_name`, `address`, `start_date`, `valid_till_date`, `status`, `createdAt`, `updatedAt`) VALUES
-(1, 'test', 'test1', 'test2', '2024-07-02', '2024-10-02', 'inactive', '2026-01-10 15:12:26', '2026-01-10 15:12:26');
+INSERT INTO `businesses` (`id`, `business_name`, `owner_name`, `address`, `start_date`, `expiry_date`, `tax`, `status`, `createdAt`, `updatedAt`) VALUES
+(1, 'test', 'test1', 'test2', '2024-07-02', '2024-10-02', 5, 'Active', '2026-01-10 15:12:26', '2026-01-10 15:12:26'),
+(2, 'akash business', 'akash', 'jffhdksl', '2026-01-10', '2027-01-10', 0, 'Active', '2026-01-10 15:25:12', '2026-01-10 15:25:12'),
+(3, 'akash business', 'akash', 'kjsdads', '2026-01-10', '2027-01-10', 0, 'Active', '2026-01-10 15:30:54', '2026-01-10 15:30:54'),
+(4, 'akash business', 'akash', 'fnjkdskl', '2026-01-10', '2027-01-10', 0, '', '2026-01-10 15:31:20', '2026-01-10 15:31:20'),
+(5, 'akash business', 'akash', 'klfds', '2026-01-10', '2027-01-10', 0, '', '2026-01-10 16:06:21', '2026-01-10 16:06:21'),
+(6, 'akash business', 'akash', 'klfds', '2026-01-10', '2027-01-10', 0, '', '2026-01-10 16:07:33', '2026-01-10 16:07:33'),
+(7, 'akash business', 'akash', 'jksjlkdsasasd', '2026-01-10', '2027-01-10', 0, '', '2026-01-10 16:30:50', '2026-01-10 16:30:50');
 
 -- --------------------------------------------------------
 
@@ -57,7 +64,7 @@ CREATE TABLE `customers` (
   `id` int(11) NOT NULL,
   `business_id` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `phone_number` varchar(10) NOT NULL,
+  `phone` varchar(10) NOT NULL,
   `order_id` varchar(255) NOT NULL,
   `payment_status` enum('online paid','cash paid','cancelled','pending') NOT NULL,
   `discount_amount` int(11) NOT NULL,
@@ -69,10 +76,8 @@ CREATE TABLE `customers` (
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`id`, `business_id`, `name`, `phone_number`, `order_id`, `payment_status`, `discount_amount`, `createdAt`, `updatedAt`) VALUES
-(1, '1', 'test111', '1234567890', '1', 'pending', 10, '2024-07-03 18:30:28', '2025-10-04 20:35:22'),
-(2, '1', 'test111', '1234567890', '1', 'pending', 10, '2025-10-04 20:34:24', '2025-10-04 22:57:05'),
-(3, '1', 'test', '1234567890', '1', 'pending', 0, '2025-10-04 22:56:07', '2025-10-04 22:56:07');
+INSERT INTO `customers` (`id`, `business_id`, `name`, `phone`, `order_id`, `payment_status`, `discount_amount`, `createdAt`, `updatedAt`) VALUES
+(1, '6', 'jksdlk1', '1234567890', '0', 'cancelled', 768, '2026-01-13 17:35:15', '2026-01-13 17:35:31');
 
 -- --------------------------------------------------------
 
@@ -121,7 +126,8 @@ INSERT INTO `menus` (`id`, `business_id`, `name`, `price`, `availability`, `crea
 (2, '1', 'test', '12', 'yes', '2025-10-04 22:52:35', '2025-10-04 22:52:35'),
 (3, '1', 'akash2', '2', 'yes', '2026-01-10 14:44:54', '2026-01-10 14:44:54'),
 (4, '1', 'test', '23', 'no', '2026-01-10 14:47:15', '2026-01-10 14:47:15'),
-(5, '1', 'akash2', '342', 'no', '2026-01-10 14:47:33', '2026-01-10 14:55:54');
+(5, '1', 'akash2', '342', 'no', '2026-01-10 14:47:33', '2026-01-10 14:55:54'),
+(6, '4', 'akash1111111', '3221', 'no', '2026-01-13 15:51:26', '2026-01-13 15:51:26');
 
 -- --------------------------------------------------------
 
@@ -234,10 +240,9 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `role`) VALUES
-(1, 'super_admin'),
-(2, 'admin'),
-(3, 'lawyer'),
-(4, 'team_member');
+(1, 'admin'),
+(2, 'user'),
+(3, 'team member');
 
 -- --------------------------------------------------------
 
@@ -265,20 +270,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `business_id`, `name`, `phone`, `password`, `otp`, `status`, `profile_pic`, `parent_id`, `role_id`, `createdAt`, `updatedAt`) VALUES
-(1, 0, 'akash1', '8287284653', '$2b$10$PPhzINViABUO7q8u7trPx.SMvv9bt2VEpvJd06Dv/lUc6/d96KDmi', 123456, 'Active', 'fb6ff3c1-8598-44bb-8655-bd1aefda67f1.jpg', 1, 2, '2023-06-29 07:57:00', '2023-06-29 07:57:00'),
-(2, 0, 'akash2', '8287284654', '$2b$10$3k/l5xyF2pV.zKiowAXYe.BcOhrerQbLI3wEzew6vUmL0jy3O1l9e', 123456, 'Inactive', 'fb6ff3c1-8598-44bb-8655-bd1aefda67f1.jpg', 1, 2, '2023-06-29 07:57:00', '2023-06-29 07:57:00'),
-(3, 0, 'akash2', '8287284654', '$2b$10$3k/l5xyF2pV.zKiowAXYe.BcOhrerQbLI3wEzew6vUmL0jy3O1l9e', 123456, 'Inactive', 'fb6ff3c1-8598-44bb-8655-bd1aefda67f1.jpg', 1, 2, '2023-06-29 07:57:00', '2023-06-29 07:57:00'),
-(4, 0, 'akash2', '8287284654', '$2b$10$3k/l5xyF2pV.zKiowAXYe.BcOhrerQbLI3wEzew6vUmL0jy3O1l9e', 123456, 'Inactive', 'fb6ff3c1-8598-44bb-8655-bd1aefda67f1.jpg', 1, 2, '2023-06-29 07:57:00', '2023-06-29 07:57:00'),
-(5, 0, 'akash2', '8287284654', '$2b$10$3k/l5xyF2pV.zKiowAXYe.BcOhrerQbLI3wEzew6vUmL0jy3O1l9e', 123456, 'Inactive', 'fb6ff3c1-8598-44bb-8655-bd1aefda67f1.jpg', 1, 2, '2023-06-29 07:57:00', '2023-06-29 07:57:00'),
-(6, 0, 'akash2', '8287284654', '$2b$10$3k/l5xyF2pV.zKiowAXYe.BcOhrerQbLI3wEzew6vUmL0jy3O1l9e', 123456, 'Inactive', 'fb6ff3c1-8598-44bb-8655-bd1aefda67f1.jpg', 1, 2, '2023-06-29 07:57:00', '2023-06-29 07:57:00'),
-(7, 0, 'akash2', '8287284654', '$2b$10$3k/l5xyF2pV.zKiowAXYe.BcOhrerQbLI3wEzew6vUmL0jy3O1l9e', 123456, 'Inactive', 'fb6ff3c1-8598-44bb-8655-bd1aefda67f1.jpg', 1, 2, '2023-06-29 07:57:00', '2023-06-29 07:57:00'),
-(8, 0, 'akash2', '8287284654', '$2b$10$3k/l5xyF2pV.zKiowAXYe.BcOhrerQbLI3wEzew6vUmL0jy3O1l9e', 123456, 'Inactive', 'fb6ff3c1-8598-44bb-8655-bd1aefda67f1.jpg', 1, 2, '2023-06-29 07:57:00', '2023-06-29 07:57:00'),
-(9, 0, 'akash2', '8287284654', '$2b$10$3k/l5xyF2pV.zKiowAXYe.BcOhrerQbLI3wEzew6vUmL0jy3O1l9e', 123456, 'Inactive', 'fb6ff3c1-8598-44bb-8655-bd1aefda67f1.jpg', 1, 2, '2023-06-29 07:57:00', '2023-06-29 07:57:00'),
-(10, 0, 'akash2', '8287284654', '$2b$10$3k/l5xyF2pV.zKiowAXYe.BcOhrerQbLI3wEzew6vUmL0jy3O1l9e', 123456, 'Inactive', 'fb6ff3c1-8598-44bb-8655-bd1aefda67f1.jpg', 1, 2, '2023-06-29 07:57:00', '2023-06-29 07:57:00'),
-(11, 0, 'akash2', '8287284654', '$2b$10$3k/l5xyF2pV.zKiowAXYe.BcOhrerQbLI3wEzew6vUmL0jy3O1l9e', 123456, 'Inactive', 'fb6ff3c1-8598-44bb-8655-bd1aefda67f1.jpg', 1, 2, '2023-06-29 07:57:00', '2023-06-29 07:57:00'),
-(12, 0, 'akash2', '8287284654', '$2b$10$3k/l5xyF2pV.zKiowAXYe.BcOhrerQbLI3wEzew6vUmL0jy3O1l9e', 123456, 'Inactive', 'fb6ff3c1-8598-44bb-8655-bd1aefda67f1.jpg', 1, 2, '2023-06-29 07:57:00', '2023-06-29 07:57:00'),
-(13, 0, 'akash2', '8287284654', '$2b$10$3k/l5xyF2pV.zKiowAXYe.BcOhrerQbLI3wEzew6vUmL0jy3O1l9e', 123456, 'Inactive', 'fb6ff3c1-8598-44bb-8655-bd1aefda67f1.jpg', 1, 2, '2023-06-29 07:57:00', '2023-06-29 07:57:00'),
-(14, 0, 'akash1111111', '8287284612', '$2b$10$SsybT8.h.HlRD3DgrSsivOyE1QQLvIollkFBlJkBZdQ6746zuJvEK', NULL, 'Active', '', 1, 2, '2025-10-04 14:07:34', '2025-10-04 14:07:34');
+(1, 1, 'akash2', '8287284653', '$2b$10$mMB2cCxwqiqWF5vlEBjrQuU.NAUvfrnQ6EYgSr9iE3cq2H0QYmcTy', NULL, 'Active', '', 1, 1, '2026-01-10 15:32:53', '2026-01-10 15:32:53'),
+(2, 2, 'akash2', '8287284654', '$2b$10$xg8p3AMZjZuPMhZwuKRWU.2M2MepSJyrIrysdlv/hDgdi37lOs.OC', NULL, 'Active', '', 1, 2, '2026-01-10 16:10:18', '2026-01-10 16:10:18'),
+(3, 3, 'akash2', '8287284655', '$2b$10$dseZOAI6lWyT/8VczOOoIONP2R.D25e39LSYomZYihfI9hSE1DmlS', NULL, 'Active', '', 1, 3, '2026-01-10 16:30:56', '2026-01-10 16:30:56'),
+(4, 1, 'akash2_user', '8287284656', '$2b$10$ePYU7d1LrWoRwVEshdbA0elvxm8TgZt3uwllKwt7fPYamM0vqHmH.', NULL, 'Active', '', 1, 3, '2026-01-13 18:48:48', '2026-01-13 18:48:48');
 
 --
 -- Indexes for dumped tables
@@ -352,13 +347,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `businesses`
 --
 ALTER TABLE `businesses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `expenses`
@@ -370,7 +365,7 @@ ALTER TABLE `expenses`
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -400,13 +395,13 @@ ALTER TABLE `referrals`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

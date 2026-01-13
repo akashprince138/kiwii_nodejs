@@ -17,14 +17,18 @@ signup = (data) => {
       "string.empty": `Password cannot be an empty.`,
       "any.required": `Password is a required.`,
     }),
-    role_id: Joi.string().required().messages({
+    role_id: Joi.number().required().messages({
       "string.empty": `Role cannot be an empty.`,
       "any.required": `Role is a required.`,
     }),
-    status: Joi.string().required().messages({
-      "string.empty": `Status cannot be an empty.`,
-      "any.required": `Status is a required.`,
+    parent_id: Joi.number().required().messages({
+      "string.empty": `Parent id cannot be an empty.`,
+      "any.required": `Parent id is a required.`,
     }),
+    // status: Joi.string().required().messages({
+    //   "string.empty": `Status cannot be an empty.`,
+    //   "any.required": `Status is a required.`,
+    // }),
   }).options({ abortEarly: false });
 
   return JoiSchema.validate(data);

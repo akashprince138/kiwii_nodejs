@@ -9,7 +9,7 @@ AddCustomer = (data) => {
       "string.empty": `Name cannot be an empty.`,
       "any.required": `Name is a required.`,
     }),
-    phone_number: Joi.number().required().messages({
+    phone: Joi.number().required().messages({
       "any.empty": `Phone Number cannot be an empty.`,
       "any.required": `Phone Number is a required.`,
     }),

@@ -13,7 +13,7 @@ addMember = (addMemberData) => {
       "string.empty": `Password cannot be an empty.`,
       "any.required": `Password is a required.`,
     }),
-    role_id: Joi.string().required().messages({
+    role_id: Joi.number().required().messages({
       "string.empty": `Role cannot be an empty.`,
       "any.required": `Role is a required.`,
     }),

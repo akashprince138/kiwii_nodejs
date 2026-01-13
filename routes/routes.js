@@ -24,7 +24,7 @@ module.exports = (app) => {
   app.post("/signup", cors(), Signup.create);
   app.post("/send-otp", cors(), Login.createOTP);
   app.post("/verify-otp", cors(), Login.verifyOTP);
-  // app.post("/add_member",  cors(), Signup.create);
+  app.post("/add_member",  cors(), Signup.create);
   app.post("/change_password",  cors(), ChangePassword.create);
   app.post("/forget_password", cors(), ChangePassword.sendOTP);
   app.post("/reset_password", cors(), ChangePassword.resetPassword);

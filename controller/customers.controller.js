@@ -17,7 +17,7 @@ exports.create = async (req, res) => {
     const customerModel = new CustomerModel({
       business_id: req.body.business_id,
       name :req.body.name,
-      phone_number: req.body.phone_number,
+      phone: req.body.phone,
       order_id:req.body.order_id,
       payment_status: req.body.payment_status,
       payment_status: Constant.PENDING,
@@ -85,7 +85,7 @@ exports.update = async (req, res) => {
     const customerModel = new CustomerModel({
       id: req.body.id,
       name: req.body.name,
-      phone_number: req.body.phone_number,
+      phone: req.body.phone,
       payment_status: req.body.payment_status,
       discount_amount: req.body.discount_amount,
     });

@@ -39,11 +39,13 @@ User.getById = (id, result) => {
     u.name,
     u.phone,
     u.id,
+    u.role_id,
     b.owner_name AS owner_name,
     b.status AS status,
     b.address AS address,
     b.start_date AS start_date,
     b.expiry_date AS expiry_date,
+    b.tax AS tax,
     b.business_name
 FROM users u
 INNER JOIN businesses b 

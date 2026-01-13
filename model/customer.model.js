@@ -3,7 +3,7 @@ const Customer = function (customer) {
   this.id = customer.id;
   this.business_id = customer.business_id;
   this.name = customer.name;
-  this.phone_number = customer.phone_number;
+  this.phone = customer.phone;
   this.order_id = customer.order_id;
   this.payment_status = customer.payment_status;
   this.discount_amount = customer.discount_amount;
@@ -11,7 +11,21 @@ const Customer = function (customer) {
   this.updatedAt = new Date();
 };
 Customer.create = async (newCustomer, result) => {
-  sql.query("INSERT  INTO customers SET ?", newCustomer, (err, res) => {
+  sql.query(
+    "select * from customers where phone = " + "'" + newCustomer.phone + "'",
+    newCustomer,
+    async (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, {
+          data: "there is some issue in database.",
+          message: "false",
+        });
+        return;
+      } else if (res.length > 0) {
+        result(null, { data: null, message: "Phone Number already exist. Try another phone number." });
+      } else {
+        sql.query("INSERT  INTO customers SET ?", newCustomer, (err, res) => {
           if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -19,7 +33,10 @@ Customer.create = async (newCustomer, result) => {
           } else {
             result(null, { data: res, message: "success",status:200 });
           }
-        });
+  });
+      }
+    }
+  );
 };
 
 Customer.getAll = (result) => {
@@ -48,10 +65,10 @@ Customer.getById = (id, result) => {
 
 Customer.update = async (newUpdateCustomer, result) => {
   sql.query(
-    "UPDATE customers SET name = ?, phone_number = ?, payment_status = ?, discount_amount = ? , updatedAt = ? WHERE id = ?",
+    "UPDATE customers SET name = ?, phone = ?, payment_status = ?, discount_amount = ? , updatedAt = ? WHERE id = ?",
     [
       newUpdateCustomer.name,
-      newUpdateCustomer.phone_number,
+      newUpdateCustomer.phone,
       newUpdateCustomer.payment_status,
       newUpdateCustomer.discount_amount,
       newUpdateCustomer.updatedAt,
