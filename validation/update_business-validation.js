@@ -13,14 +13,18 @@ updateBusiness = (data) => {
       "string.empty": `Owner name cannot be an empty.`,
       "any.required": `Owner Name is a required.`,
     }),
+    gst_number: Joi.string().required().messages({
+      "string.empty": `GST Number cannot be an empty.`,
+      "any.required": `GST Number is a required.`,
+    }),
     address: Joi.string().required().messages({
       "string.empty": `Address cannot be an empty.`,
       "any.required": `Address is a required.`,
     }),
-    expiry_date: Joi.string().required().messages({
-      "any.empty": `Expiry Date cannot be an empty.`,
-      "any.required": `Expiry Date is a required.`,
-    }),
+    // expiry_date: Joi.string().required().messages({
+    //   "any.empty": `Expiry Date cannot be an empty.`,
+    //   "any.required": `Expiry Date is a required.`,
+    // }),
     status: Joi.string().required().messages({
       "any.empty": `Status cannot be an empty.`,
       "any.required": `Status is a required.`,

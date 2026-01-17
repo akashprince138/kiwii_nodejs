@@ -15,7 +15,7 @@ Purchase.create = async (newPurchase, result) => {
             result(err, null);
             return;
           } else {
-            result(null, { data: res, message: "success",status:200 });
+            result(null, { data: res, status:true });
           }
         });
 };
@@ -27,7 +27,7 @@ Purchase.getAll = (result) => {
       result(err, null);
       return;
     } else {
-      result(null, { data: res, message: "success",status:200 });
+      result(null, { data: res, message: "success",status:true });
     }
   });
 };
@@ -39,7 +39,7 @@ Purchase.getById = (id, result) => {
       result(err, null);
       return;
     } else {
-      result(null, { data: res, message: "success",status:200 });
+      result(null, { data: res, message: "success",status:true });
     }
   });
 };
@@ -60,7 +60,7 @@ Purchase.update = async (newUpdatePurchase, result) => {
         result(err, null);
         return;
       } else {
-        result(null, { data: res, message: "success",status:200 });
+        result(null, { data: res, message: "success",status:true });
       }
     }
   );

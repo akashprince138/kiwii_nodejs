@@ -17,7 +17,7 @@ ProfilePic.create = async (newProfilePic, result) => {
         result(err, null);
         return;
       } else {
-        result(null, { data: res, message: "success" });
+        result(null, { data: res, status: true });
       }
     }
   );

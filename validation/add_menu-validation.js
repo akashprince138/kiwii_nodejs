@@ -17,6 +17,10 @@ addMenu = (data) => {
       "any.empty": `Availability cannot be an empty.`,
       "any.required": `Availability is a required.`,
     }),
+    tax: Joi.number().required().messages({
+      "any.empty": `Tax cannot be an empty.`,
+      "any.required": `Tax is a required.`,
+    }),
   }).options({ abortEarly: false });
   return JoiSchema.validate(data);
 };

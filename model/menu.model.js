@@ -5,6 +5,7 @@ const Menu = function (menu) {
   this.name = menu.name;
   this.price = menu.price;
   this.availability = menu.availability;
+  this.tax = menu.tax;
   this.createdAt = new Date();
   this.updatedAt = new Date();
 };
@@ -15,7 +16,7 @@ Menu.create = async (newMenu, result) => {
             result(err, null);
             return;
           } else {
-            result(null, { data: res, message: "success",status:200 });
+            result(null, { data: res, status:true });
           }
         });
 };
@@ -27,7 +28,7 @@ Menu.getAll = (result) => {
       result(err, null);
       return;
     } else {
-      result(null, { data: res, message: "success",status:200 });
+      result(null, { data: res, status:true });
     }
   });
 };
@@ -39,18 +40,19 @@ Menu.getById = (id, result) => {
       result(err, null);
       return;
     } else {
-      result(null, { data: res, message: "success",status:200 });
+      result(null, { data: res, status:true });
     }
   });
 };
 
 Menu.update = async (newUpdateMenu, result) => {
   sql.query(
-    "UPDATE menus SET name = ?, price = ?, availability = ?, updatedAt = ? WHERE id = ?",
+    "UPDATE menus SET name = ?, price = ?, availability = ?, tax = ?, updatedAt = ? WHERE id = ?",
     [
       newUpdateMenu.name,
       newUpdateMenu.price,
       newUpdateMenu.availability,
+      newUpdateMenu.tax,
       newUpdateMenu.updatedAt,
       newUpdateMenu.id,
     ],
@@ -60,7 +62,7 @@ Menu.update = async (newUpdateMenu, result) => {
         result(err, null);
         return;
       } else {
-        result(null, { data: res, message: "success",status:200 });
+        result(null, { data: res, status:true });
       }
     }
   );
@@ -74,7 +76,7 @@ Menu.delete = async (id, result) => {
           return;
         } else {
           console.log(res);
-          result(null, { data: res, message: "success" });
+          result(null, { data: res, status: true });
         }
       });
 };

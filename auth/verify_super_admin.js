@@ -5,7 +5,8 @@ VerifySuperAdmin = (req, res, next) => {
     next();
   } else {
     return res.status(403).send({
-      status: 403,
+      status: false,
+      statusCode:403,
       message: "You do not have permission to access.",
     });
   }

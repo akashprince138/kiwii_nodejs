@@ -8,8 +8,8 @@ exports.create = async (req, res) => {
     const error = addBusinessValidation(req.body);
     if (error.error) {
       return res.status(400).send({
-        message: "error",
-        status:400,
+        status: false,
+        statusCode:400,
         message: error.error.details[0].message,
       });
     }
@@ -18,18 +18,18 @@ exports.create = async (req, res) => {
       // user_id: req.body.user_id,
       business_name: req.body.business_name,
       owner_name: req.body.owner_name,
+      gst_number: req.body.gst_number,
       address: req.body.address,
-      start_date: req.body.start_date,
-      expiry_date: req.body.expiry_date,
       status: Constant.ACTIVE,
+      start_date:  getTodayDate(),
+      expiry_date: getExpiryDate(),
     });
 
     BusinessModel.create(businessModel, (err, data) => {
       if (err)
         res.status(500).send({
+          status:false,
           message: err.message || "Some error occurred while creating data.",
-          message: "error",
-          status:500,
         });
       else res.send(data);
     });
@@ -43,9 +43,8 @@ exports.getAll = async (req, res) => {
     BusinessModel.getAll((err, data) => {
       if (err)
         res.status(500).send({
+          status:false,
           message: err.message || "Some error occurred while getting data.",
-          message: "error",
-          status:500,
         });
       else res.send(data);
     });
@@ -59,9 +58,8 @@ exports.getById = async (req, res) => {
     BusinessModel.getById(req.params.id, (err, data) => {
       if (err)
         res.status(500).send({
+          status:false,
           message: err.message || "Some error occurred while getting data.",
-          message: "error",
-          status:500,
         });
       else res.send(data);
     });
@@ -76,8 +74,7 @@ exports.update = async (req, res) => {
     const error = updateBusinessValidation(data);
     if (error.error) {
       return res.status(400).send({
-        message: "error",
-        status:400,
+        status:false,
         message: error.error.details[0].message,
       });
     }
@@ -86,6 +83,7 @@ exports.update = async (req, res) => {
       id: req.body.id,
       business_name: req.body.business_name,
       owner_name: req.body.owner_name,
+      gst_number:req.body.gst_number,
       address: req.body.address,
       status: req.body.status,
     });
@@ -93,8 +91,7 @@ exports.update = async (req, res) => {
     BusinessModel.update(businessModel, (err, data) => {
       if (err)
         res.status(500).send({
-          message: "error",
-          status:500,
+          status:false,
           message: err.message || "Some error occurred while updating data.",
         });
       else res.send(data);
@@ -102,4 +99,13 @@ exports.update = async (req, res) => {
   } catch (error) {
     console.log("error", error);
   }
+};
+
+const getTodayDate = () =>
+  new Date().toISOString().split("T")[0];
+
+const getExpiryDate = () => {
+  const date = new Date();
+  date.setFullYear(date.getFullYear() + 1);
+  return date.toISOString().split("T")[0];
 };

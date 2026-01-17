@@ -16,7 +16,7 @@ Orders.create = async (newOrders, result) => {
             result(err, null);
             return;
           } else {
-            result(null, { data: res, message: "success",status:200 });
+            result(null, { data: res, status:true });
           }
         });
 };
@@ -28,7 +28,7 @@ Orders.getAll = (result) => {
       result(err, null);
       return;
     } else {
-      result(null, { data: res, message: "success",status:200 });
+      result(null, { data: res, status:true });
     }
   });
 };
@@ -40,7 +40,7 @@ Orders.getById = (id, result) => {
       result(err, null);
       return;
     } else {
-      result(null, { data: res, message: "success",status:200 });
+      result(null, { data: res, status:true });
     }
   });
 };
@@ -63,7 +63,7 @@ Orders.update = async (newUpdateOrders, result) => {
         result(err, null);
         return;
       } else {
-        result(null, { data: res, message: "success",status:200 });
+        result(null, { data: res, status:true });
       }
     }
   );
@@ -77,7 +77,7 @@ Orders.delete = async (id, result) => {
           return;
         } else {
           console.log(res);
-          result(null, { data: res, message: "success" });
+          result(null, { data: res, status: true });
         }
       });
 };

@@ -8,8 +8,7 @@ exports.create = async (req, res) => {
     const error = addPaymentValidation(req.body);
     if (error.error) {
       return res.status(400).send({
-        message: "error",
-        status:400,
+        status:false,
         message: error.error.details[0].message,
       });
     }
@@ -24,8 +23,7 @@ exports.create = async (req, res) => {
       if (err)
         res.status(500).send({
           message: err.message || "Some error occurred while creating data.",
-          message: "error",
-          status:500,
+          status:false,
         });
       else res.send(data);
     });
@@ -40,8 +38,7 @@ exports.getAll = async (req, res) => {
       if (err)
         res.status(500).send({
           message: err.message || "Some error occurred while getting data.",
-          message: "error",
-          status:500,
+          status:false,
         });
       else res.send(data);
     });
@@ -56,8 +53,7 @@ exports.getById = async (req, res) => {
       if (err)
         res.status(500).send({
           message: err.message || "Some error occurred while getting data.",
-          message: "error",
-          status:500,
+          status:false,
         });
       else res.send(data);
     });
@@ -72,24 +68,20 @@ exports.update = async (req, res) => {
     const error = updatePaymentValidation(data);
     if (error.error) {
       return res.status(400).send({
-        message: "error",
-        status:400,
+        status:false,
         message: error.error.details[0].message,
       });
     }
 
     const paymentModel = new PaymentModel({
       id: req.body.id,
-      business_id: req.body.business_id,
-      amount: req.body.amount,
       status: req.body.status,
     });
 
     PaymentModel.update(paymentModel, (err, data) => {
       if (err)
         res.status(500).send({
-          message: "error",
-          status:500,
+          status:false,
           message: err.message || "Some error occurred while updating data.",
         });
       else res.send(data);
@@ -105,6 +97,7 @@ exports.delete = async (req, res) => {
       if (err)
         res.status(500).send({
           message: err.message || "Some error occurred while deleting data.",
+          status:false,
         });
       else res.send(data);
     });

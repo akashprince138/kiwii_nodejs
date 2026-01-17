@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2026 at 02:35 PM
+-- Generation Time: Jan 17, 2026 at 05:07 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -35,8 +35,8 @@ CREATE TABLE `businesses` (
   `address` varchar(255) NOT NULL,
   `start_date` date NOT NULL,
   `expiry_date` date NOT NULL,
-  `tax` int(11) NOT NULL DEFAULT '0',
   `status` enum('Active','Inactive') NOT NULL,
+  `gst_number` varchar(20) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -45,14 +45,18 @@ CREATE TABLE `businesses` (
 -- Dumping data for table `businesses`
 --
 
-INSERT INTO `businesses` (`id`, `business_name`, `owner_name`, `address`, `start_date`, `expiry_date`, `tax`, `status`, `createdAt`, `updatedAt`) VALUES
-(1, 'test', 'test1', 'test2', '2024-07-02', '2024-10-02', 5, 'Active', '2026-01-10 15:12:26', '2026-01-10 15:12:26'),
-(2, 'akash business', 'akash', 'jffhdksl', '2026-01-10', '2027-01-10', 0, 'Active', '2026-01-10 15:25:12', '2026-01-10 15:25:12'),
-(3, 'akash business', 'akash', 'kjsdads', '2026-01-10', '2027-01-10', 0, 'Active', '2026-01-10 15:30:54', '2026-01-10 15:30:54'),
-(4, 'akash business', 'akash', 'fnjkdskl', '2026-01-10', '2027-01-10', 0, '', '2026-01-10 15:31:20', '2026-01-10 15:31:20'),
-(5, 'akash business', 'akash', 'klfds', '2026-01-10', '2027-01-10', 0, '', '2026-01-10 16:06:21', '2026-01-10 16:06:21'),
-(6, 'akash business', 'akash', 'klfds', '2026-01-10', '2027-01-10', 0, '', '2026-01-10 16:07:33', '2026-01-10 16:07:33'),
-(7, 'akash business', 'akash', 'jksjlkdsasasd', '2026-01-10', '2027-01-10', 0, '', '2026-01-10 16:30:50', '2026-01-10 16:30:50');
+INSERT INTO `businesses` (`id`, `business_name`, `owner_name`, `address`, `start_date`, `expiry_date`, `status`, `gst_number`, `createdAt`, `updatedAt`) VALUES
+(1, 'test', 'test1', 'test2', '2024-07-02', '2024-10-02', 'Active', '', '2026-01-10 15:12:26', '2026-01-10 15:12:26'),
+(2, 'akash business', 'akash', 'jffhdksl', '2026-01-10', '2027-01-10', 'Active', '', '2026-01-10 15:25:12', '2026-01-10 15:25:12'),
+(3, 'akash business', 'akash', 'kjsdads', '2026-01-10', '2027-01-10', 'Active', '', '2026-01-10 15:30:54', '2026-01-10 15:30:54'),
+(4, 'akash business', 'akash', 'fnjkdskl', '2026-01-10', '2027-01-10', 'Active', '', '2026-01-10 15:31:20', '2026-01-10 15:31:20'),
+(5, 'akash business', 'akash', 'klfds', '2026-01-10', '2027-01-10', 'Active', '', '2026-01-10 16:06:21', '2026-01-10 16:06:21'),
+(6, 'akash business', 'akash', 'klfds', '2026-01-10', '2027-01-10', 'Active', '', '2026-01-10 16:07:33', '2026-01-10 16:07:33'),
+(7, 'akash business', 'akash', 'jksjlkdsasasd', '2026-01-10', '2027-01-10', 'Active', '', '2026-01-10 16:30:50', '2026-01-17 19:24:39'),
+(8, 'akash business', 'akash', 'kewjkkldas', '2026-01-17', '2027-01-17', 'Active', '', '2026-01-17 21:05:36', '2026-01-17 21:05:36'),
+(9, 'akash business', 'akash', 'dfk;sl', '2026-01-17', '2027-01-17', 'Active', 'gst111', '2026-01-17 21:13:07', '2026-01-17 21:13:07'),
+(10, 'akash business', 'akash', 'dfk;sl', '2026-01-17', '2027-01-17', 'Active', 'gst111', '2026-01-17 21:13:36', '2026-01-17 21:27:12'),
+(11, 'akash business', 'akash', 'sa', '2026-01-17', '2027-01-17', 'Active', 'gst111', '2026-01-17 21:35:01', '2026-01-17 21:35:01');
 
 -- --------------------------------------------------------
 
@@ -100,7 +104,9 @@ CREATE TABLE `expenses` (
 --
 
 INSERT INTO `expenses` (`id`, `business_id`, `name`, `price`, `quantity`, `createdAt`, `updatedAt`) VALUES
-(1, '1', 'test', '1113212213', '11', '2025-10-25 13:36:08', '2025-10-25 13:39:49');
+(1, '1', 'test', '1113212213', '11', '2025-10-25 13:36:08', '2025-10-25 13:39:49'),
+(2, '7', 'akash2', '22121', '222', '2026-01-17 20:35:42', '2026-01-17 20:35:42'),
+(3, '7', 'akash2', '22121', '1', '2026-01-17 20:36:03', '2026-01-17 20:37:00');
 
 -- --------------------------------------------------------
 
@@ -114,6 +120,7 @@ CREATE TABLE `menus` (
   `name` varchar(255) NOT NULL,
   `price` decimal(10,0) NOT NULL,
   `availability` enum('yes','no') NOT NULL,
+  `tax` int(11) NOT NULL DEFAULT '0',
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -122,12 +129,14 @@ CREATE TABLE `menus` (
 -- Dumping data for table `menus`
 --
 
-INSERT INTO `menus` (`id`, `business_id`, `name`, `price`, `availability`, `createdAt`, `updatedAt`) VALUES
-(2, '1', 'test', '12', 'yes', '2025-10-04 22:52:35', '2025-10-04 22:52:35'),
-(3, '1', 'akash2', '2', 'yes', '2026-01-10 14:44:54', '2026-01-10 14:44:54'),
-(4, '1', 'test', '23', 'no', '2026-01-10 14:47:15', '2026-01-10 14:47:15'),
-(5, '1', 'akash2', '342', 'no', '2026-01-10 14:47:33', '2026-01-10 14:55:54'),
-(6, '4', 'akash1111111', '3221', 'no', '2026-01-13 15:51:26', '2026-01-13 15:51:26');
+INSERT INTO `menus` (`id`, `business_id`, `name`, `price`, `availability`, `tax`, `createdAt`, `updatedAt`) VALUES
+(2, '1', 'test', '12', 'yes', 0, '2025-10-04 22:52:35', '2025-10-04 22:52:35'),
+(3, '1', 'akash2', '2', 'yes', 0, '2026-01-10 14:44:54', '2026-01-10 14:44:54'),
+(4, '1', 'test', '23', 'no', 0, '2026-01-10 14:47:15', '2026-01-10 14:47:15'),
+(5, '1', 'akash2', '342', 'no', 0, '2026-01-10 14:47:33', '2026-01-10 14:55:54'),
+(6, '4', 'akash1111111', '3221', 'no', 0, '2026-01-13 15:51:26', '2026-01-13 15:51:26'),
+(7, '7', 'menu1', '111', 'yes', 4, '2026-01-17 19:35:23', '2026-01-17 20:09:56'),
+(8, '7', 'menu1', '111', 'yes', 0, '2026-01-17 19:35:39', '2026-01-17 20:09:00');
 
 -- --------------------------------------------------------
 
@@ -173,7 +182,7 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`id`, `business_id`, `amount`, `status`, `createdAt`, `updatedAt`) VALUES
-(1, '1', '390823', 'Pending', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(1, '1', '390823', 'Completed', '0000-00-00 00:00:00', '2026-01-17 20:51:05');
 
 -- --------------------------------------------------------
 
@@ -196,7 +205,9 @@ CREATE TABLE `purchases` (
 --
 
 INSERT INTO `purchases` (`id`, `business_id`, `name`, `price`, `quantity`, `createdAt`, `updatedAt`) VALUES
-(1, '1', 'akash2', '1111', '43223234432', '2025-10-25 15:07:03', '2025-10-25 15:10:56');
+(1, '1', 'akash2', '1111', '43223234432', '2025-10-25 15:07:03', '2025-10-25 15:10:56'),
+(2, '7', 'akash2', '111', '111', '2026-01-17 20:41:41', '2026-01-17 20:41:41'),
+(3, '6', 'test', '222', '22', '2026-01-17 20:42:02', '2026-01-17 20:42:36');
 
 -- --------------------------------------------------------
 
@@ -222,7 +233,11 @@ INSERT INTO `referrals` (`id`, `business_id`, `referral_code`, `status`, `create
 (2, 1, 'ajhg', 'active', '2025-10-05 20:10:02', '0000-00-00 00:00:00'),
 (3, 1, 'test123', 'active', '2025-10-05 20:10:22', '0000-00-00 00:00:00'),
 (4, 1, 'dsfo7327098', 'active', '2025-10-25 15:28:35', '0000-00-00 00:00:00'),
-(5, 1, 'test123', 'active', '2025-10-26 18:51:48', '2025-10-26 18:51:48');
+(5, 1, 'test123', 'active', '2025-10-26 18:51:48', '2025-10-26 18:51:48'),
+(6, 1, 'test111', 'active', '2026-01-17 20:54:08', '2026-01-17 20:54:08'),
+(7, 1, 'test111', 'active', '2026-01-17 20:54:20', '2026-01-17 20:54:20'),
+(8, 7, '8eh9st2u', 'active', '2026-01-17 20:59:08', '2026-01-17 20:59:08'),
+(9, 6, '0752wdyn', 'active', '2026-01-17 20:59:15', '2026-01-17 20:59:15');
 
 -- --------------------------------------------------------
 
@@ -347,7 +362,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `businesses`
 --
 ALTER TABLE `businesses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `customers`
@@ -359,13 +374,13 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -383,13 +398,13 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `purchases`
 --
 ALTER TABLE `purchases`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `referrals`
 --
 ALTER TABLE `referrals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `roles`

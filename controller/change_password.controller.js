@@ -9,7 +9,7 @@ exports.create = (req, res) => {
     const error = changePasswordValidation(req.body);
     if (error.error) {
       return res.status(400).send({
-        status: "error",
+        status:false,
         message: error.error.details[0].message,
       });
     }
@@ -21,6 +21,7 @@ exports.create = (req, res) => {
     ChangePassword.create(changePassword, (err, data) => {
       if (err)
         res.status(500).send({
+          status:false,
           message: err.message || "Some error occurred while login.",
         });
       else res.send(data);
@@ -34,7 +35,7 @@ exports.sendOTP = (req, res) => {
     const error = forgetPasswordValidation(req.body);
     if (error.error) {
       return res.status(400).send({
-        status: "error",
+        status:false,
         message: error.error.details[0].message,
       });
     }
@@ -46,6 +47,7 @@ exports.sendOTP = (req, res) => {
     ForgetPassword.create(forgetPassword, (err, data) => {
       if (err)
         res.status(500).send({
+          status:false,
           message: err.message || "Some error occurred while forget password.",
         });
       else res.send(data);
@@ -59,7 +61,7 @@ exports.resetPassword = (req, res) => {
     const error = resetPasswordValidation(req.body);
     if (error.error) {
       return res.status(400).send({
-        status: "error",
+        status:false,
         message: error.error.details[0].message,
       });
     }
@@ -71,6 +73,7 @@ exports.resetPassword = (req, res) => {
     ResetPassword.create(resetPassword, (err, data) => {
       if (err)
         res.status(500).send({
+          status:false,
           message: err.message || "Some error occurred while reset password.",
         });
       else res.send(data);

@@ -23,7 +23,7 @@ UpdateUser.update = async (newUpdateUser, result) => {
         result(err, null);
         return;
       } else {
-        result(null, { data: res, message: "success" });
+        result(null, { data: res, message: "success",status:true });
       }
     }
   );

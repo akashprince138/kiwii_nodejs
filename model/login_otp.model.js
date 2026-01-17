@@ -15,14 +15,14 @@ Login.create = async (newLogin, result) => {
       if (err) {
         console.log("error: ", err);
         result(null, {
-          data: "there is some issue in database.",
-          message: "false",
+          message: "there is some issue in database.",
+          status: false,
         });
         return;
       } else if (res.length === 0) {
-        result(null, { data: "phone number does not exist", message: "false" });
+        result(null, { data: "phone number does not exist", message: "false", status: false });
       } else {
-        result(null, { data: res[0], message: "success" });
+        result(null, { data: res[0], message: "success",status:true });
       }
     }
   );

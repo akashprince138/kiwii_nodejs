@@ -17,13 +17,13 @@ ForgetPassword.create = async (newForgetPassword, result) => {
       if (err) {
         console.log("error: ", err);
         result(null, {
-          data: "there is some issue in database.",
-          message: "false",
+          message: "there is some issue in database.",
+          status:false,
         });
         return;
       } else {
         result(null, {
-          status: 200,
+          status: true,
           message: "data updated successfully.",
         });
       }

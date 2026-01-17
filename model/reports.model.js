@@ -12,7 +12,7 @@ Reports.getAll = (result) => {
       result(err, null);
       return;
     } else {
-      result(null, { data: res, message: "success",status:200 });
+      result(null, { data: res, message: "success",status:true });
     }
   });
 };

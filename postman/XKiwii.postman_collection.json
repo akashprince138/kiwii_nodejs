@@ -1,1590 +1,1626 @@
 {
-	"info": {
-		"_postman_id": "e1651208-0fef-4116-a958-e3f4bf5d206d",
-		"name": "XKiwii",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "10261798"
-	},
-	"item": [
-		{
-			"name": "Login",
-			"item": [
-				{
-					"name": "signup",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"akash1\",\r\n    \"phone\":\"8287284612\",\r\n    \"password\":\"123456\",\r\n    \"status\":\"Active\",\r\n    \"role_id\":\"2\"\r\n\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/signup",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"signup"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "login",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"phone\":\"8287284653\",\r\n    \"password\":\"123456\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/login",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "change_password",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"password\":\"123456\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/change_password",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"change_password"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "forget_password",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"phone\":\"8287284653\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/forget_password",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"forget_password"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "reset_password",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"phone\":\"8287284653\",\r\n    \"password\":\"123456\",\r\n    \"otp\":123456\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/reset_password",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"reset_password"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "User",
-			"item": [
-				{
-					"name": "users",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/users",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "user",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/user/0",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"user",
-								"0"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "add_member",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"test\",\r\n    \"phone\":\"8287284654\",\r\n    \"password\":\"123456\",\r\n    \"role_id\":\"1\"\r\n\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/add_member",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"add_member"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "profile_pic",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "id",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "profile_pic",
-									"type": "file",
-									"src": "/C:/Users/akash/OneDrive/Pictures/Camera Roll/WIN_20221121_13_17_57_Pro.jpg"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{baseurl}}/profile_pic",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"profile_pic"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update_user",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\":\"0\",\r\n    \"name\":\"akash1\",\r\n    \"status\":\"Active\",\r\n    \"role_id\":\"1\"\r\n\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/update_user",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"update_user"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Business",
-			"item": [
-				{
-					"name": "create_business",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"user_id\": 1,\r\n    \"business_name\": \"test\",\r\n    \"owner_name\": \"test1\",\r\n    \"address\": \"test2\",\r\n    \"start_date\": \"2024-07-02\",\r\n    \"valid_till_date\":\"2024-10-02\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/create_business",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"create_business"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get_business_list",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/get_business_list",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"get_business_list"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get_business_info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/get_business_info/1",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"get_business_info",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update_business_info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1,\r\n    \"business_name\": \"test\",\r\n    \"owner_name\": \"test1\",\r\n    \"address\": \"test2\",\r\n    \"valid_till_date\":\"2024-10-02\",\r\n    \"status\":\"active\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/update_business_info",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"update_business_info"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Menu",
-			"item": [
-				{
-					"name": "create_menu",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"business_id\": 1,\r\n    \"name\": \"test\",\r\n    \"price\": 12,\r\n    \"availability\": \"yes\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/create_menu",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"create_menu"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get_menu_lists",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/get_menu_list",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"get_menu_list"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get_menu_info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/get_menu_info/1",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"get_menu_info",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update_menu_info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"test111\",\r\n    \"price\": 13,\r\n    \"availability\": \"no\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/update_menu_info",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"update_menu_info"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete_menu_info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/delete_menu_info/1",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"delete_menu_info",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Expenses",
-			"item": [
-				{
-					"name": "create_expense",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"business_id\": 1,\r\n    \"name\": \"test\",\r\n    \"price\": 12,\r\n    \"quantity\": \"1kg\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/create_expense",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"create_expense"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get_expenses_list",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/get_expenses_list",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"get_expenses_list"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get_expense_info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/get_expense_info/1",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"get_expense_info",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update_expense_info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"test111\",\r\n    \"price\": 13,\r\n    \"quantity\": \"2kg\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/update_expense_info",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"update_expense_info"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete_expense_info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/delete_expense_info/1",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"delete_expense_info",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Purchase",
-			"item": [
-				{
-					"name": "create_purchase",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"business_id\": 1,\r\n    \"name\": \"test\",\r\n    \"price\": 12,\r\n    \"quantity\": \"1kg\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/create_purchase",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"create_purchase"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get_purchases_list",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/get_purchases_list",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"get_purchases_list"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get_purchase_info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/get_purchase_info/1",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"get_purchase_info",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update_purchase_info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"test111\",\r\n    \"price\": 13,\r\n    \"quantity\": \"2kg\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/update_purchase_info",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"update_purchase_info"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete_purchase_info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/delete_purchase_info/1",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"delete_purchase_info",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Payment",
-			"item": [
-				{
-					"name": "create_payment",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"business_id\": 1,\r\n    \"amount\": 12,\r\n    \"status\": \"Pending\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/create_payment",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"create_payment"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get_payment_list",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/get_payment_list",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"get_payment_list"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get_payment_info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/get_payment_info/1",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"get_payment_info",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update_payment_info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1,\r\n    \"business_id\": 1,\r\n    \"amount\": 111,\r\n    \"status\": \"Completed\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/update_payment_info",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"update_payment_info"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete_payment_info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/delete_payment_info/1",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"delete_payment_info",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Customers",
-			"item": [
-				{
-					"name": "create_customer",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"business_id\": 1,\r\n    \"name\" :\"test\",\r\n    \"phone_number\": 1234567890,\r\n    \"order_id\":1,\r\n    \"discount_amount\": \"test5\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/create_customer",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"create_customer"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get_customer_list",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/get_customer_list",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"get_customer_list"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get_customer_info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/get_customer_info/1",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"get_customer_info",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update_customer_info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\": 2,\r\n    \"name\": \"test111\",\r\n    \"phone_number\": 1234567890,\r\n    \"payment_status\":\"pending\",\r\n    \"discount_amount\":\"10\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/update_customer_info",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"update_customer_info"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Orders",
-			"item": [
-				{
-					"name": "create_order",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"business_id\": 1,\r\n    \"customer_id\": 1,\r\n    \"menu_id\": 1,\r\n    \"quantity\": 1,\r\n    \"delivery_status\": \"ordered\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/create_order",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"create_order"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get_order_list",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/get_order_list",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"get_order_list"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get_order_info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/get_order_info/1",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"get_order_info",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update_order_info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1,\r\n    \"customer_id\": 11,\r\n    \"menu_id\": 11,\r\n    \"quantity\": 11,\r\n    \"delivery_status\": \"delivered\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/update_order_info",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"update_order_info"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete_order_info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/delete_order_info/1",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"delete_order_info",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Referral",
-			"item": [
-				{
-					"name": "get_referral_list",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/get_referral_list",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"get_referral_list"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get_referral_info",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/get_referral_info/1",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"get_referral_info",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "create_referral",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"business_id\":1,\r\n    \"referral_code\":\"test123\"\r\n\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/create_referral",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"create_referral"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Reports",
-			"item": [
-				{
-					"name": "sale_reports",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/sale_reports",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"sale_reports"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	]
+  "info": {
+    "_postman_id": "e1651208-0fef-4116-a958-e3f4bf5d206d",
+    "name": "XKiwii",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "10261798"
+  },
+  "item": [
+    {
+      "name": "Login",
+      "item": [
+        {
+          "name": "login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"phone\":\"8287284653\",\r\n    \"password\":\"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/login",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "change_password",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"password\":\"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/change_password",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "change_password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "forget_password",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"phone\":\"8287284653\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/forget_password",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "forget_password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "reset_password",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"phone\":\"8287284653\",\r\n    \"password\":\"123456\",\r\n    \"otp\":123456\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/reset_password",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "reset_password"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Business",
+      "item": [
+        {
+          "name": "create_business",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"business_name\": \"test\",\r\n    \"owner_name\": \"test1\",\r\n    \"gst_number\":\"ttesfnks\",\r\n    \"address\": \"test2\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/create_business",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "create_business"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get_business_list",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/get_business_list",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "get_business_list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get_business_info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/get_business_info/1",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "get_business_info",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update_business_info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 1,\r\n    \"business_name\": \"test\",\r\n    \"owner_name\": \"test1\",\r\n    \"gst_number\":\"ttesfnks\",\r\n    \"address\": \"test2\",\r\n    \"status\":\"active\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/update_business_info",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "update_business_info"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "signup",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"akash1\",\r\n    \"phone\":\"8287284612\",\r\n    \"password\":\"123456\",\r\n    \"status\":\"Active\",\r\n    \"role_id\":\"2\"\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/signup",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "signup"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "users",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/users",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "user",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/user/0",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "user",
+                "0"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "add_member",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"test\",\r\n    \"phone\":\"8287284654\",\r\n    \"password\":\"123456\",\r\n    \"role_id\":\"1\"\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/add_member",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "add_member"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "profile_pic",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "profile_pic",
+                  "type": "file",
+                  "src": "/C:/Users/akash/OneDrive/Pictures/Camera Roll/WIN_20221121_13_17_57_Pro.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseurl}}/profile_pic",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "profile_pic"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update_user",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\":\"0\",\r\n    \"name\":\"akash1\",\r\n    \"status\":\"Active\",\r\n    \"role_id\":\"1\"\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/update_user",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "update_user"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Menu",
+      "item": [
+        {
+          "name": "create_menu",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"business_id\": 1,\r\n    \"name\": \"test\",\r\n    \"price\": 12,\r\n    \"availability\": \"yes\",\r\n    \"tax\":3\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/create_menu",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "create_menu"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get_menu_lists",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/get_menu_list",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "get_menu_list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get_menu_info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/get_menu_info/1",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "get_menu_info",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update_menu_info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"test111\",\r\n    \"price\": 13,\r\n    \"availability\": \"no\",\r\n    \"tax\":3\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/update_menu_info",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "update_menu_info"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete_menu_info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/delete_menu_info/1",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "delete_menu_info",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Expenses",
+      "item": [
+        {
+          "name": "create_expense",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"business_id\": 1,\r\n    \"name\": \"test\",\r\n    \"price\": 12,\r\n    \"quantity\": \"1kg\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/create_expense",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "create_expense"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get_expenses_list",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/get_expenses_list",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "get_expenses_list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get_expense_info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/get_expense_info/1",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "get_expense_info",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update_expense_info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"test111\",\r\n    \"price\": 13,\r\n    \"quantity\": \"2kg\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/update_expense_info",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "update_expense_info"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete_expense_info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/delete_expense_info/1",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "delete_expense_info",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Purchase",
+      "item": [
+        {
+          "name": "create_purchase",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"business_id\": 1,\r\n    \"name\": \"test\",\r\n    \"price\": 12,\r\n    \"quantity\": \"1kg\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/create_purchase",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "create_purchase"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get_purchases_list",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/get_purchases_list",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "get_purchases_list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get_purchase_info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/get_purchase_info/1",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "get_purchase_info",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update_purchase_info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"test111\",\r\n    \"price\": 13,\r\n    \"quantity\": \"2kg\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/update_purchase_info",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "update_purchase_info"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete_purchase_info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/delete_purchase_info/1",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "delete_purchase_info",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Payment",
+      "item": [
+        {
+          "name": "create_payment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"business_id\": 1,\r\n    \"amount\": 12,\r\n    \"status\": \"Pending\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/create_payment",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "create_payment"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get_payment_list",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/get_payment_list",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "get_payment_list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get_payment_info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/get_payment_info/1",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "get_payment_info",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update_payment_info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 1,\r\n    \"business_id\": 1,\r\n    \"amount\": 111,\r\n    \"status\": \"Completed\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/update_payment_info",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "update_payment_info"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete_payment_info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/delete_payment_info/1",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "delete_payment_info",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Customers",
+      "item": [
+        {
+          "name": "create_customer",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"business_id\": 1,\r\n    \"name\" :\"test\",\r\n    \"phone_number\": 1234567890,\r\n    \"order_id\":1,\r\n    \"discount_amount\": \"test5\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/create_customer",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "create_customer"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get_customer_list",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/get_customer_list",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "get_customer_list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get_customer_info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/get_customer_info/1",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "get_customer_info",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update_customer_info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 2,\r\n    \"name\": \"test111\",\r\n    \"phone_number\": 1234567890,\r\n    \"payment_status\":\"pending\",\r\n    \"discount_amount\":\"10\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/update_customer_info",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "update_customer_info"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "create_order",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"business_id\": 1,\r\n    \"customer_id\": 1,\r\n    \"menu_id\": 1,\r\n    \"quantity\": 1,\r\n    \"delivery_status\": \"ordered\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/create_order",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "create_order"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get_order_list",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/get_order_list",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "get_order_list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get_order_info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/get_order_info/1",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "get_order_info",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update_order_info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 1,\r\n    \"customer_id\": 11,\r\n    \"menu_id\": 11,\r\n    \"quantity\": 11,\r\n    \"delivery_status\": \"delivered\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/update_order_info",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "update_order_info"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete_order_info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/delete_order_info/1",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "delete_order_info",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Referral",
+      "item": [
+        {
+          "name": "get_referral_list",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/get_referral_list",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "get_referral_list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get_referral_info",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/get_referral_info/1",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "get_referral_info",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create_referral",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"business_id\":1,\r\n    \"referral_code\":\"test123\"\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/create_referral",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "create_referral"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update_referral_info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\":1,\r\n    \"status\":\"inactive\",\r\n    \"referral_code\":\"test123\"\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/update_referral_info",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "update_referral_info"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reports",
+      "item": [
+        {
+          "name": "sale_reports",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/sale_reports",
+              "host": [
+                "{{baseurl}}"
+              ],
+              "path": [
+                "sale_reports"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
 }

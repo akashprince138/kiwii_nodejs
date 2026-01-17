@@ -23,12 +23,12 @@ Signup.create = async (newSignup, result) => {
       if (err) {
         console.log("error: ", err);
         result(null, {
-          data: "there is some issue in database.",
-          message: "false",
+          message: "there is some issue in database.",
+          status:false
         });
         return;
       } else if (res.length > 0) {
-        result(null, { data: null, message: "Phone Number already exist. Try another phone number." });
+        result(null, { data: null, message: "Phone Number already exist. Try another phone number.",status:false });
       } else {
         sql.query("INSERT  INTO users SET ?", newSignup, (err, res) => {
           if (err) {
@@ -36,7 +36,7 @@ Signup.create = async (newSignup, result) => {
             result(err, null);
             return;
           } else {
-            result(null, { data: res, message: "success" });
+            result(null, { data: res, message: "success",status:true });
           }
         });
       }

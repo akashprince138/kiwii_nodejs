@@ -23,12 +23,12 @@ AddMember.create = async (newAddMember, result) => {
       if (err) {
         console.log("error: ", err);
         result(null, {
-          data: "there is some issue in database.",
-          message: "false",
+          status:false,
+          message: "there is some issue in database.",
         });
         return;
       } else if (res.length > 0) {
-        result(null, { data: null, message: "Phone Number already exist." });
+        result(null, { status:false, message: "Phone Number already exist." });
       } else {
         sql.query("INSERT  INTO users SET ?", newAddMember, (err, res) => {
           if (err) {
@@ -36,7 +36,7 @@ AddMember.create = async (newAddMember, result) => {
             result(err, null);
             return;
           } else {
-            result(null, { data: res, message: "success" });
+            result(null, { data: res, message: "success",status:true });
           }
         });
       }

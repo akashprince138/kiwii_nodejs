@@ -14,7 +14,7 @@ Payment.create = async (newPayment, result) => {
             result(err, null);
             return;
           } else {
-            result(null, { data: res, message: "success",status:200 });
+            result(null, { data: res, status:true });
           }
         });
 };
@@ -26,7 +26,7 @@ Payment.getAll = (result) => {
       result(err, null);
       return;
     } else {
-      result(null, { data: res, message: "success",status:200 });
+      result(null, { data: res, status:true });
     }
   });
 };
@@ -38,16 +38,15 @@ Payment.getById = (id, result) => {
       result(err, null);
       return;
     } else {
-      result(null, { data: res, message: "success",status:200 });
+      result(null, { data: res, status:true });
     }
   });
 };
 
 Payment.update = async (newUpdatePayment, result) => {
   sql.query(
-    "UPDATE payments SET amount = ?, status = ?, updatedAt = ? WHERE id = ?",
+    "UPDATE payments SET status = ?, updatedAt = ? WHERE id = ?",
     [
-      newUpdatePayment.amount,
       newUpdatePayment.status,
       newUpdatePayment.updatedAt,
       newUpdatePayment.id,
@@ -58,7 +57,7 @@ Payment.update = async (newUpdatePayment, result) => {
         result(err, null);
         return;
       } else {
-        result(null, { data: res, message: "success",status:200 });
+        result(null, { data: res, status:true });
       }
     }
   );
@@ -72,7 +71,7 @@ Payment.delete = async (id, result) => {
           return;
         } else {
           console.log(res);
-          result(null, { data: res, message: "success" });
+          result(null, { data: res,  status:true});
         }
       });
 };

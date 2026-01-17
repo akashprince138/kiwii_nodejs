@@ -17,14 +17,16 @@ Login.create = async (newLogin, result) => {
       if (err) {
         console.log("error: ", err);
         result(null, {
-          data: "there is some issue in database.",
-          message: "false",
+          message: "there is some issue in database.",
+          status: false,
         });
         return;
       } else if (res.length === 0) {
         result(null, { data: "phone number does not exist", message: "false" });
       }else if (res[0].status === 'Inactive') {
-        result(null, { data: "Your account is deactived.", message: "false" });
+        result(null, {message: "Your account is deactived.", status: false });
+      }else if (res[0].role_id !== 1) {
+        result(null, {message: "You do not access for this user.", status:false });
       } else {
         sql.query(
           "select status from businesses where id = " + "'" + res[0].business_id + "'",
@@ -34,12 +36,12 @@ Login.create = async (newLogin, result) => {
             if (err) {
               console.log("error: ", err);
               result(null, {
-                data: "there is some issue in database(business table).",
-                message: "false",
+                message: "there is some issue in database(business table).",
+                status: "false",
               });
               return;
             }else if (res1[0].status === 'Inactive') {
-              result(null, { data: "Your Business account is deactived.", message: "false" });
+              result(null, { data: "", message: "Your Business account is deactived.", status:false });
             }
           }
         );
@@ -52,9 +54,9 @@ Login.create = async (newLogin, result) => {
           var token = jwt.sign({ data: res[0] }, secretkey, {
             expiresIn: 86400, // expires in 24 hours
           });
-          result(null, { data: res[0], message: "success", token: token });
+          result(null, { data: res[0], status: true, token: token });
         } else {
-          result(null, { data: "phone/Password mismatch.", message: "false" });
+          result(null, {message: "phone/Password mismatch.", status:false });
         }
       }
     }

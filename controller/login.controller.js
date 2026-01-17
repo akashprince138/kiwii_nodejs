@@ -9,7 +9,7 @@ exports.create = (req, res) => {
     const error = loginValidation(req.body);
     if (error.error) {
       return res.status(400).send({
-        status: "error",
+        status:false,
         message: error.error.details[0].message,
       });
     }
@@ -21,6 +21,7 @@ exports.create = (req, res) => {
       if (err)
         res.status(500).send({
           message: err.message || "Some error occurred while login.",
+          status:false,
         });
       else res.send(data);
     });
@@ -33,7 +34,7 @@ exports.createOTP = (req, res) => {
     const error = loginOTPValidation(req.body);
     if (error.error) {
       return res.status(400).send({
-        status: "error",
+        status:false,
         message: error.error.details[0].message,
       });
     }
@@ -44,6 +45,7 @@ exports.createOTP = (req, res) => {
       if (err)
         res.status(500).send({
           message: err.message || "Some error occurred while getting OTP.",
+          status:false,
         });
       else res.send(data);
     });
@@ -56,7 +58,7 @@ exports.verifyOTP = (req, res) => {
     const error = verifyOTPValidation(req.body);
     if (error.error) {
       return res.status(400).send({
-        status: "error",
+        status:false,
         message: error.error.details[0].message,
       });
     }
@@ -68,6 +70,7 @@ exports.verifyOTP = (req, res) => {
       if (err)
         res.status(500).send({
           message: err.message || "Some error occurred while verifying OTP.",
+          status:false,
         });
       else res.send(data);
     });

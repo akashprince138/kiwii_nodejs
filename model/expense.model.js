@@ -15,7 +15,7 @@ Expense.create = async (newExpense, result) => {
             result(err, null);
             return;
           } else {
-            result(null, { data: res, message: "success",status:200 });
+            result(null, { data: res, message: "success",status:true });
           }
         });
 };
@@ -27,7 +27,7 @@ Expense.getAll = (result) => {
       result(err, null);
       return;
     } else {
-      result(null, { data: res, message: "success",status:200 });
+      result(null, { data: res, message: "success",status:true });
     }
   });
 };
@@ -39,7 +39,7 @@ Expense.getById = (id, result) => {
       result(err, null);
       return;
     } else {
-      result(null, { data: res, message: "success",status:200 });
+      result(null, { data: res, message: "success",status:true });
     }
   });
 };
@@ -60,7 +60,7 @@ Expense.update = async (newUpdateExpenses, result) => {
         result(err, null);
         return;
       } else {
-        result(null, { data: res, message: "success",status:200 });
+        result(null, { data: res, message: "success",status:true });
       }
     }
   );
@@ -74,7 +74,7 @@ Expense.delete = async (id, result) => {
           return;
         } else {
           console.log(res);
-          result(null, { data: res, message: "success" });
+          result(null, { data: res, status:true, message: "success" });
         }
       });
 };

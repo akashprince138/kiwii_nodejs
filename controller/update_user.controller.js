@@ -5,7 +5,7 @@ exports.update = (req, res) => {
     const error = updateUserValidation(req.body);
     if (error.error) {
       return res.status(400).send({
-        status: "error",
+        status:false,
         message: error.error.details[0].message,
       });
     }
@@ -19,6 +19,7 @@ exports.update = (req, res) => {
       if (err)
         res.status(500).send({
           message: err.message || "Some error occurred while update User.",
+          status:false,
         });
       else res.send(data);
     });

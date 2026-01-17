@@ -13,6 +13,10 @@ updateMenu = (data) => {
       "any.empty": `Price cannot be an empty.`,
       "any.required": `Price is a required.`,
     }),
+    tax: Joi.number().required().messages({
+      "any.empty": `Tax cannot be an empty.`,
+      "any.required": `Tax is a required.`,
+    }),
     availability: Joi.string().required().messages({
       "any.empty": `Availability cannot be an empty.`,
       "any.required": `Availability is a required.`,

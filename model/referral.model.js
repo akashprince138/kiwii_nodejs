@@ -13,7 +13,7 @@ AddReferral.getAll = async (result) => {
       result(err, null);
       return;
     } else {
-      result(null, { data: res, message: "success" });
+      result(null, { data: res, message: "success",status:true });
     }
   });
 };
@@ -23,7 +23,7 @@ AddReferral.getById = async (id, result) => {
       result(err, null);
       return;
     } else {
-      result(null, { data: res, message: "success" });
+      result(null, { data: res, message: "success",status:true });
     }
   });
 };
@@ -33,7 +33,7 @@ AddReferral.create = async (newAddReferral, result) => {
       result(err, null);
       return;
     } else {
-      result(null, { data: res, message: "success" });
+      result(null, { data: res, message: "success",status:true });
     }
   });
 };
@@ -52,7 +52,7 @@ AddReferral.update = async (newUpdateReferral, result) => {
         result(err, null);
         return;
       } else {
-        result(null, { data: res, message: "success",status:200 });
+        result(null, { data: res, message: "success",status:true });
       }
     }
   );

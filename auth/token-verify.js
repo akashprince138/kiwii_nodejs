@@ -6,14 +6,16 @@ verifyToken = (req, res, next) => {
   const token = authHeader && authHeader.split(" ")[1];
   if (token == null)
     return res.status(401).send({
-      status: 401,
+      statusCode: 401,
+      status: false,
       message: "Token is empty.",
     });
   jwt.verify(token, secretkey, (err, user) => {
     console.log(err);
     if (err)
       return res.status(403).send({
-        status: 403,
+        statusCode: 403,
+        status: false,
         message: "Token has expired.",
       });
     req.user = user;

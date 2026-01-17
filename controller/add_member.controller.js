@@ -5,7 +5,7 @@ exports.create = (req, res) => {
     const error = addMemberValidation(req.body);
     if (error.error) {
       return res.status(400).send({
-        status: "error",
+        status: false,
         message: error.error.details[0].message,
       });
     }
@@ -22,6 +22,7 @@ exports.create = (req, res) => {
     AddMember.create(addMember, (err, data) => {
       if (err)
         res.status(500).send({
+          status:false,
           message: err.message || "Some error occurred while addMember.",
         });
       else res.send(data);

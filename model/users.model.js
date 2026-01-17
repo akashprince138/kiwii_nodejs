@@ -29,7 +29,7 @@ ORDER BY u.id DESC;
       result(err, null);
       return;
     } else {
-      result(null, { data: res, message: "success" });
+      result(null, { data: res, message: "success",status:true });
     }
   });
 };
@@ -45,7 +45,6 @@ User.getById = (id, result) => {
     b.address AS address,
     b.start_date AS start_date,
     b.expiry_date AS expiry_date,
-    b.tax AS tax,
     b.business_name
 FROM users u
 INNER JOIN businesses b 
@@ -58,7 +57,7 @@ ORDER BY u.id DESC;
       result(err, null);
       return;
     } else {
-      result(null, { data: res, message: "success" });
+      result(null, { data: res, message: "success",status:true });
     }
   });
 };

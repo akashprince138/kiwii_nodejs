@@ -7,6 +7,7 @@ exports.getAll = async (req, res) => {
       if (err)
         res.status(500).send({
           message: err.message || "Some error occurred while deleting referral.",
+          status:false,
         });
       else res.send(data);
     });
@@ -20,6 +21,7 @@ exports.getById = async (req, res) => {
       if (err)
         res.status(500).send({
           message: err.message || "Some error occurred while deleting referral.",
+          status:false,
         });
       else res.send(data);
     });
@@ -32,13 +34,13 @@ exports.create = async (req, res) => {
     const error = addReferralValidation(req.body);
     if (error.error) {
       return res.status(400).send({
-        status: "error",
+        status:false,
         message: error.error.details[0].message,
       });
     }
     const referralData = new ReferralData({
       business_id: req.body.business_id,
-      referral_code: req.body.referral_code,
+      referral_code: Math.random().toString(36).substring(2, 10),
       status: 'active'
     });
 
@@ -46,6 +48,7 @@ exports.create = async (req, res) => {
       if (err)
         res.status(500).send({
           message: err.message || "Some error occurred while creating referral.",
+          status:false,
         });
       else res.send(data);
     });
@@ -59,8 +62,7 @@ exports.update = async (req, res) => {
     const error = updateReferralValidation(data);
     if (error.error) {
       return res.status(400).send({
-        message: "error",
-        status:400,
+        status:false,
         message: error.error.details[0].message,
       });
     }
@@ -74,8 +76,7 @@ exports.update = async (req, res) => {
     ReferralData.update(referralData, (err, data) => {
       if (err)
         res.status(500).send({
-          message: "error",
-          status:500,
+          status:false,
           message: err.message || "Some error occurred while updating data.",
         });
       else res.send(data);

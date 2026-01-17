@@ -18,12 +18,12 @@ Customer.create = async (newCustomer, result) => {
       if (err) {
         console.log("error: ", err);
         result(null, {
-          data: "there is some issue in database.",
-          message: "false",
+          message: "there is some issue in database.",
+          status:false,
         });
         return;
       } else if (res.length > 0) {
-        result(null, { data: null, message: "Phone Number already exist. Try another phone number." });
+        result(null, { status:false, message: "Phone Number already exist. Try another phone number." });
       } else {
         sql.query("INSERT  INTO customers SET ?", newCustomer, (err, res) => {
           if (err) {
@@ -31,7 +31,7 @@ Customer.create = async (newCustomer, result) => {
             result(err, null);
             return;
           } else {
-            result(null, { data: res, message: "success",status:200 });
+            result(null, { data: res, message: "success",status:true });
           }
   });
       }
@@ -46,7 +46,7 @@ Customer.getAll = (result) => {
       result(err, null);
       return;
     } else {
-      result(null, { data: res, message: "success",status:200 });
+      result(null, { data: res, message: "success",status:true });
     }
   });
 };
@@ -58,7 +58,7 @@ Customer.getById = (id, result) => {
       result(err, null);
       return;
     } else {
-      result(null, { data: res, message: "success",status:200 });
+      result(null, { data: res, message: "success",status:true });
     }
   });
 };
@@ -80,7 +80,7 @@ Customer.update = async (newUpdateCustomer, result) => {
         result(err, null);
         return;
       } else {
-        result(null, { data: res, message: "success",status:200 });
+        result(null, { data: res, message: "success",status:true });
       }
     }
   );

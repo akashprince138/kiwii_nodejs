@@ -8,8 +8,7 @@ exports.getAll = async (req, res) => {
       if (err)
         res.status(500).send({
           message: err.message || "Some error occurred while getting data.",
-          message: "error",
-          status:500,
+          status:false,
         });
       else res.send(data);
     });

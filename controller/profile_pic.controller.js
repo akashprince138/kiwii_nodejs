@@ -6,14 +6,14 @@ exports.create = async (req, res) => {
     const error = profilePicValidation(req.body);
     if (error.error) {
       return res.status(400).send({
-        status: "error",
+        status:false,
         message: error.error.details[0].message,
       });
     }
     // console.log("req", req.files);
     if (!req.files || !req.files.profile_pic) {
       res.status(400).send({
-        status: 400,
+        status:false,
         message: "Please upload profile picture.",
       });
       return;
@@ -30,6 +30,7 @@ exports.create = async (req, res) => {
       if (err)
         res.status(500).send({
           message: err.message || "Some error occurred while profilePic.",
+          status:false,
         });
       else res.send(data);
     });
