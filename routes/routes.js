@@ -19,6 +19,7 @@ module.exports = (app) => {
   const Referral = require("../controller/referral.controller.js");
   const Reports = require("../controller/reports.controller.js");
   const RatingReview = require("../controller/rating_review.controller.js");
+  const Ticket = require("../controller/tickets.controller.js");
 
   
   app.post("/login", cors(), Login.create);
@@ -85,4 +86,9 @@ module.exports = (app) => {
   app.get("/get_rating_review",  cors(), RatingReview.getAll);
   app.get("/get_rating_review/:id",  cors(), RatingReview.getById);
   app.put("/update_rating_review",  cors(), RatingReview.update);
+
+  app.post("/create_ticket",  cors(), Ticket.create);
+  app.get("/get_ticket",  cors(), Ticket.getAll);
+  app.get("/get_ticket/:id",  cors(), Ticket.getById);
+  app.put("/update_ticket",  cors(), Ticket.update);
 };
