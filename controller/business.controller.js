@@ -15,11 +15,12 @@ exports.create = async (req, res) => {
     }
 
     const businessModel = new BusinessModel({
-      // user_id: req.body.user_id,
+      business_type: req.body.business_type,
       business_name: req.body.business_name,
       owner_name: req.body.owner_name,
       gst_number: req.body.gst_number,
       address: req.body.address,
+      pin_code: req.body.pin_code,
       status: Constant.ACTIVE,
       start_date:  getTodayDate(),
       expiry_date: getExpiryDate(),
@@ -81,10 +82,12 @@ exports.update = async (req, res) => {
 
     const businessModel = new BusinessModel({
       id: req.body.id,
+      business_type: req.body.business_type,
       business_name: req.body.business_name,
       owner_name: req.body.owner_name,
       gst_number:req.body.gst_number,
       address: req.body.address,
+      pin_code: req.body.pin_code,
       status: req.body.status,
     });
 

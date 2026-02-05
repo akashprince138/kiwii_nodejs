@@ -1,11 +1,12 @@
 const sql = require("../config/db.js");
 const Business = function (business) {
-  this.id = business.id;
+  this.business_type = business.business_type;
   // this.user_id = business.user_id;
   this.business_name = business.business_name;
   this.owner_name = business.owner_name;
   this.gst_number = business.gst_number;
   this.address = business.address;
+  this.pin_code = business.pin_code;
   this.start_date = business.start_date;
   this.expiry_date = business.expiry_date;
   this.status = business.status;
@@ -25,7 +26,7 @@ Business.create = async (newBusiness, result) => {
 };
 
 Business.getAll = (result) => {
-  sql.query("select * from businesses ORDER BY id desc", (err, res) => {
+  sql.query("select business_type, business_name, owner_name, address, start_date, expiry_date, status, pin_code, gst_number from businesses ORDER BY id desc", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -50,12 +51,14 @@ Business.getById = (id, result) => {
 
 Business.update = async (newUpdateBusiness, result) => {
   sql.query(
-    "UPDATE businesses SET business_name = ?, owner_name = ?, gst_number= ?, address = ?, status = ? , updatedAt = ? WHERE id = ?",
+    "UPDATE businesses SET business_type = ?,business_name = ?, owner_name = ?, gst_number= ?, address = ?, pin_code = ?, status = ? , updatedAt = ? WHERE id = ?",
     [
+      business_type.business_type,
       newUpdateBusiness.business_name,
       newUpdateBusiness.owner_name,
       newUpdateBusiness.gst_number,
       newUpdateBusiness.address,
+      newUpdateBusiness.pin_code,
       newUpdateBusiness.status,
       newUpdateBusiness.updatedAt,
       newUpdateBusiness.id,

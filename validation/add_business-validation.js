@@ -1,10 +1,10 @@
 const Joi = require("joi");
 addBusiness = (data) => {
   const JoiSchema = Joi.object({
-    // user_id: Joi.number().required().messages({
-    //   "string.empty": `User Id cannot be an empty.`,
-    //   "any.required": `User Id is a required.`,
-    // }),
+    business_type: Joi.string().required().messages({
+      "string.empty": `Business Type cannot be an empty.`,
+      "any.required": `Business Type is a required.`,
+    }),
     business_name: Joi.string().required().messages({
       "string.empty": `Business name cannot be an empty.`,
       "any.required": `Business Name is a required.`,
@@ -20,6 +20,10 @@ addBusiness = (data) => {
     address: Joi.string().required().messages({
       "string.empty": `Address cannot be an empty.`,
       "any.required": `Address is a required.`,
+    }),
+    pin_code: Joi.number().required().messages({
+      "string.empty": `Pin Code cannot be an empty.`,
+      "any.required": `Pin Code is a required.`,
     }),
   }).options({ abortEarly: false });
   return JoiSchema.validate(data);
