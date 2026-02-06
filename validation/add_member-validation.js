@@ -1,6 +1,10 @@
 const Joi = require("joi");
 addMember = (addMemberData) => {
   const JoiSchema = Joi.object({
+    business_id: Joi.number().required().messages({
+      "string.empty": `Business Id cannot be an empty.`,
+      "any.required": `Business Id is a required.`,
+    }),
     name: Joi.string().required().messages({
       "string.empty": `Name cannot be an empty.`,
       "any.required": `Name is a required.`,
@@ -16,6 +20,10 @@ addMember = (addMemberData) => {
     role_id: Joi.number().required().messages({
       "string.empty": `Role cannot be an empty.`,
       "any.required": `Role is a required.`,
+    }),
+    parent_id: Joi.number().required().messages({
+      "string.empty": `Parent Id cannot be an empty.`,
+      "any.required": `Parent Id is a required.`,
     }),
   }).options({ abortEarly: false });
 

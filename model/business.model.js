@@ -26,7 +26,25 @@ Business.create = async (newBusiness, result) => {
 };
 
 Business.getAll = (result) => {
-  sql.query("select business_type, business_name, owner_name, address, start_date, expiry_date, status, pin_code, gst_number from businesses ORDER BY id desc", (err, res) => {
+  const query = `SELECT 
+  b.business_type,
+  b.business_name,
+  b.owner_name,
+  b.address,
+  b.start_date,
+  b.expiry_date,
+  b.status,
+  b.pin_code,
+  b.gst_number,
+  (
+    SELECT COUNT(*)
+    FROM users u
+    WHERE u.business_id = b.id
+  ) AS user_count
+FROM businesses b
+ORDER BY b.id DESC;
+`
+  sql.query(query, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);

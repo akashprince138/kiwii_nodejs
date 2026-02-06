@@ -10,14 +10,14 @@ exports.create = (req, res) => {
       });
     }
     const addMember = new AddMember({
+      business_id: req.body.business_id,
       name: req.body.name,
       phone: req.body.phone,
       password: req.body.password,
       role_id: req.body.role_id,
-      otp: 123456,
       status: "Active",
       profile_pic: "",
-      parent_id: 1,
+      parent_id: req.body.parent_id || 1,
     });
     AddMember.create(addMember, (err, data) => {
       if (err)

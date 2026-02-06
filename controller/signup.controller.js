@@ -17,7 +17,7 @@ exports.create = (req, res) => {
       role_id: req.body.role_id,
       status: "Active",
       profile_pic: "",
-      parent_id: 1,
+      parent_id: req.body.parent_id || 1,
     });
     Signup.create(signup, (err, data) => {
       if (err)

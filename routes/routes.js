@@ -20,13 +20,14 @@ module.exports = (app) => {
   const Reports = require("../controller/reports.controller.js");
   const RatingReview = require("../controller/rating_review.controller.js");
   const Ticket = require("../controller/tickets.controller.js");
+  const AddMember = require("../controller/add_member.controller.js");
 
   
   app.post("/login", cors(), Login.create);
   app.post("/signup", cors(), Signup.create);
   app.post("/send-otp", cors(), Login.createOTP);
   app.post("/verify-otp", cors(), Login.verifyOTP);
-  app.post("/add_member",  cors(), Signup.create);
+  app.post("/add_member",  cors(), AddMember.create);
   app.post("/change_password",  cors(), ChangePassword.create);
   app.post("/forget_password", cors(), ChangePassword.sendOTP);
   app.post("/reset_password", cors(), ChangePassword.resetPassword);
