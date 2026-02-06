@@ -19,6 +19,8 @@ exports.create = async (req, res) => {
       price: req.body.price,
       availability: req.body.availability,
       tax: req.body.tax,
+      stock_type: req.body.stock_type,
+      stock_quantity: req.body.stock_quantity,
     });
 
     MenuModel.create(menuModel, (err, data) => {
@@ -81,6 +83,8 @@ exports.update = async (req, res) => {
       price: req.body.price,
       tax: req.body.tax,
       availability: req.body.availability,
+      stock_type: req.body.stock_type,
+      stock_quantity: req.body.stock_quantity,
     });
 
     MenuModel.update(menuModel, (err, data) => {

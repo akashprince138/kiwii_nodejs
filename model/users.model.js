@@ -34,6 +34,20 @@ ORDER BY u.id DESC;
   });
 };
 
+User.getAllAdmin = (result) => {
+  let query = `SELECT u.id, u.name FROM users u where role_id = 1 ORDER BY u.id DESC;
+`;
+  sql.query(query, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    } else {
+      result(null, { data: res, message: "success",status:true });
+    }
+  });
+};
+
 User.getById = (id, result) => {
   let query = `SELECT 
     u.name,

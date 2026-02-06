@@ -32,6 +32,7 @@ module.exports = (app) => {
   app.post("/forget_password", cors(), ChangePassword.sendOTP);
   app.post("/reset_password", cors(), ChangePassword.resetPassword);
   app.get("/users",   Users.findAll);
+  app.get("/get_admin",   Users.findAllAdmin);
   app.get("/user/:id",  Users.findOne);
   app.put("/update_user",  cors(), UpdateUser.update);
   app.post("/profile_pic",  cors(), ProfilePic.create);

@@ -5,14 +5,14 @@ UpdateTicket = (data) => {
       "string.empty": `Id cannot be an empty.`,
       "any.required": `Id is a required.`,
     }),
-    business_id: Joi.number().required().messages({
-      "string.empty": `Business Id cannot be an empty.`,
-      "any.required": `Business Id is a required.`,
-    }),
-    user_id: Joi.number().required().messages({
-      "string.empty": `User Id cannot be an empty.`,
-      "any.required": `User Id is a required.`,
-    }),
+    // business_id: Joi.number().required().messages({
+    //   "string.empty": `Business Id cannot be an empty.`,
+    //   "any.required": `Business Id is a required.`,
+    // }),
+    // user_id: Joi.number().required().messages({
+    //   "string.empty": `User Id cannot be an empty.`,
+    //   "any.required": `User Id is a required.`,
+    // }),
     subject: Joi.string().required().messages({
       "string.empty": `Subject cannot be an empty.`,
       "any.required": `Subject is a required.`,

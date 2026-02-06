@@ -10,6 +10,17 @@ exports.findAll = (req, res) => {
   });
 };
 
+exports.findAllAdmin = (req, res) => {
+  User.getAllAdmin((err, data) => {
+    if (err)
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving users.",
+        status:false,
+      });
+    else res.send(data);
+  });
+};
+
 exports.findOne = (req, res) => {
   User.getById(req.params.id, (err, data) => {
     if (err) {

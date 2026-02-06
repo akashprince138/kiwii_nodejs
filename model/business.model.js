@@ -28,6 +28,7 @@ Business.create = async (newBusiness, result) => {
 Business.getAll = (result) => {
   const query = `SELECT 
   b.business_type,
+  b.id,
   b.business_name,
   b.owner_name,
   b.address,

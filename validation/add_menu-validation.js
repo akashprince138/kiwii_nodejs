@@ -21,6 +21,31 @@ addMenu = (data) => {
       "any.empty": `Tax cannot be an empty.`,
       "any.required": `Tax is a required.`,
     }),
+    stock_type: Joi.string()
+      .valid("limited", "unlimited")
+      .required()
+      .messages({
+        "any.only": "Stock Type must be limited or unlimited.",
+        "any.required": "Stock Type is required.",
+      }),
+
+    stock_quantity: Joi.when("stock_type", {
+      is: "limited",
+      then: Joi.number()
+        .integer()
+        .min(0)
+        .default(0)
+        .required()
+        .messages({
+          "number.base": "Stock Quantity must be a number.",
+          "any.required": "Stock Quantity is required for limited stock.",
+        }),
+      otherwise: Joi.number()
+        .default(0)
+        .messages({
+          "number.base": "Stock Quantity must be a number.",
+        }),
+    }),
   }).options({ abortEarly: false });
   return JoiSchema.validate(data);
 };

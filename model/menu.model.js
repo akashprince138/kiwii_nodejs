@@ -6,6 +6,8 @@ const Menu = function (menu) {
   this.price = menu.price;
   this.availability = menu.availability;
   this.tax = menu.tax;
+  this.stock_type = menu.stock_type;
+  this.stock_quantity = menu.stock_quantity;
   this.createdAt = new Date();
   this.updatedAt = new Date();
 };
@@ -47,12 +49,14 @@ Menu.getById = (id, result) => {
 
 Menu.update = async (newUpdateMenu, result) => {
   sql.query(
-    "UPDATE menus SET name = ?, price = ?, availability = ?, tax = ?, updatedAt = ? WHERE id = ?",
+    "UPDATE menus SET name = ?, price = ?, availability = ?, tax = ?, stock_type = ?, stock_quantity = ?, updatedAt = ? WHERE id = ?",
     [
       newUpdateMenu.name,
       newUpdateMenu.price,
       newUpdateMenu.availability,
       newUpdateMenu.tax,
+      newUpdateMenu.stock_type,
+      newUpdateMenu.stock_quantity,
       newUpdateMenu.updatedAt,
       newUpdateMenu.id,
     ],

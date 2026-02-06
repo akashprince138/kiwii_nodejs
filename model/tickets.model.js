@@ -24,7 +24,14 @@ Ticket.create = async (newRatingReview, result) => {
 };
 
 Ticket.getAll = (result) => {
-  sql.query("select * from tickets ORDER BY id desc", (err, res) => {
+  const query = `SELECT 
+    t.*,
+    u.name AS assigned_user_name
+FROM tickets t
+LEFT JOIN users u 
+    ON t.assigned_to = u.id
+ORDER BY t.id DESC;`
+  sql.query(query, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
