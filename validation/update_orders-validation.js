@@ -1,27 +1,32 @@
 const Joi = require("joi");
-updateOrders = (data) => {
+
+const updateOrders = (data) => {
   const JoiSchema = Joi.object({
     id: Joi.number().required().messages({
-      "string.empty": `Id cannot be an empty.`,
-      "any.required": `Id is a required.`,
+      "any.required": "Id is required.",
+      "number.base": "Id must be a number.",
     }),
-    customer_id: Joi.number().required().messages({
-      "string.empty": `Customer Id cannot be an empty.`,
-      "any.required": `Customer Id is a required.`,
-    }),
-    menu_id: Joi.number().required().messages({
-      "string.empty": `Menu Id cannot be an empty.`,
-      "any.required": `Menu Id is a required.`,
-    }),
-    quantity: Joi.number().required().messages({
-      "string.empty": `Quantity cannot be an empty.`,
-      "any.required": `Quantity is a required.`,
-    }),
-    delivery_status: Joi.string().required().messages({
-      "any.empty": `Delivery Status cannot be an empty.`,
-      "any.required": `Delivery Status is a required.`,
-    }),
+
+    order_status: Joi.string()
+      .valid("pending", "paid", "cancelled")
+      .required()
+      .messages({
+        "any.required": "Order status is required.",
+        "any.only": "Invalid order status.",
+        "string.empty": "Order status cannot be empty.",
+      }),
+
+    payment_method: Joi.string()
+      .valid("cash", "upi", "card", "online")
+      .required()
+      .messages({
+        "any.required": "Payment method is required.",
+        "any.only": "Invalid payment method.",
+        "string.empty": "Payment method cannot be empty.",
+      }),
   }).options({ abortEarly: false });
+
   return JoiSchema.validate(data);
 };
+
 module.exports = updateOrders;

@@ -1,112 +1,113 @@
 const addOrdersValidation = require("../validation/add_orders-validation.js");
 const updateOrdersValidation = require("../validation/update_orders-validation.js");
-const OrdersModel = require("../model/orders.model.js");
-const Constant = require("../common/constant.js")
-const Logger = require("../middleware/logger.js")
-exports.create = async (req, res) => {
-  try {
-    const error = addOrdersValidation(req.body);
-    if (error.error) {
-      return res.status(400).send({
-        status:false,
-        message: error.error.details[0].message,
-      });
+const Orders = require("../model/orders.model.js");
+const OrderItems = require("../model/order_items.model.js");
+
+exports.create = (req, res) => {
+  const error = addOrdersValidation(req.body);
+  if (error.error) {
+    return res.status(400).send({
+      status:false,
+      message: error.error.details[0].message,
+    });
+  }
+
+  const {
+    business_id,
+    order_no,
+    customer_name,
+    customer_mobile,
+    payment_method,
+    order_status,
+    items
+  } = req.body;
+  
+  let subtotal = 0;
+  items.forEach(i => subtotal += i.price * i.quantity);
+
+  const orderData = new Orders({
+    business_id,
+    menu_id: items[0].menu_id,
+    order_no,
+    customer_name,
+    customer_mobile,
+    subtotal,
+    tax: 0,
+    discount: 0,
+    grand_total: subtotal,
+    order_status,
+    payment_method
+  });
+
+  Orders.create(orderData, (err, orderRes) => {
+    if (err) {
+      return res.status(500).send({ status: false, message: "Order failed" });
     }
 
-    const ordersModel = new OrdersModel({
-      business_id: req.body.business_id,
-      customer_id: req.body.customer_id,
-      menu_id: req.body.menu_id,
-      quantity: req.body.quantity,
-      delivery_status: req.body.delivery_status
-    });
+    const orderId = orderRes.data.insertId;
+    const now = new Date();
 
-    OrdersModel.create(ordersModel, (err, data) => {
-      if (err)
-        res.status(500).send({
-          message: err.message || "Some error occurred while creating data.",
-          status:false,
-        });
-      else res.send(data);
-    });
-  } catch (error) {
-    console.log("error", error);
-  }
-};
+    const orderItems = items.map(i => ([
+      orderId,
+      i.menu_id,
+      i.menu_name,
+      i.price,
+      i.quantity,
+      i.price * i.quantity,
+      now
+    ]));
 
-exports.getAll = async (req, res) => {
-  try {
-    OrdersModel.getAll((err, data) => {
-      if (err)
-        res.status(500).send({
-          message: err.message || "Some error occurred while getting data.",
-          status:false,
-        });
-      else res.send(data);
-    });
-  } catch (err) {
-    console.log("error", err);
-  }
-};
+    OrderItems.createBulk(orderItems, (err2) => {
+      if (err2) {
+        return res.status(500).send({ status: false, message: "Items failed" });
+      }
 
-exports.getById = async (req, res) => {
-  try {
-    OrdersModel.getById(req.params.id, (err, data) => {
-      if (err)
-        res.status(500).send({
-          message: err.message || "Some error occurred while getting data.",
-          status:false,
-        });
-      else res.send(data);
-    });
-  } catch (err) {
-    console.log("error", err);
-  }
-};
-
-exports.update = async (req, res) => {
-  try {
-    const data = req.body;
-    const error = updateOrdersValidation(data);
-    if (error.error) {
-      return res.status(400).send({
-        status:false,
-        message: error.error.details[0].message,
+      res.send({
+        status: true,
+        message: "Order created",
+        order_id: orderId,
+        grand_total: subtotal
       });
+    });
+  });
+};
+
+exports.getAll = (req, res) => {
+  Orders.getAll((err, data) => {
+    if (err) {
+      return res.status(500).send({ status: false });
+    }
+    res.send(data);
+  });
+};
+exports.getById = (req, res) => {
+  const id = req.params.id;
+
+  Orders.getById(id, (err, orderData) => {
+    if (err || !orderData.data) {
+      return res.status(404).send({ status: false, message: "Order not found" });
     }
 
-    const orderModel = new OrdersModel({
-      id: req.body.id,
-      customer_id: req.body.customer_id,
-      menu_id: req.body.menu_id,
-      quantity: req.body.quantity,
-      delivery_status: req.body.delivery_status
-    });
+    OrderItems.getByOrderId(id, (err2, itemsData) => {
+      if (err2) {
+        return res.status(500).send({ status: false });
+      }
 
-    OrdersModel.update(orderModel, (err, data) => {
-      if (err)
-        res.status(500).send({
-          status:false,
-          message: err.message || "Some error occurred while updating data.",
-        });
-      else res.send(data);
+      res.send({
+        status: true,
+        order: orderData.data,
+        items: itemsData.data
+      });
     });
-  } catch (error) {
-    console.log("error", error);
-  }
+  });
 };
+exports.update = (req, res) => {
+  const { id, order_status, payment_method } = req.body;
 
-exports.delete = async (req, res) => {
-  try {
-    OrdersModel.delete(req.params.id, (err, data) => {
-      if (err)
-        res.status(500).send({
-          message: err.message || "Some error occurred while deleting data.",
-          status:false,
-        });
-      else res.send(data);
-    });
-  } catch (err) {
-    console.log("error", err);
-  }
+  Orders.update({ id, order_status, payment_method }, (err, data) => {
+    if (err) {
+      return res.status(500).send({ status: false });
+    }
+    res.send({ status: true, message: "Order updated" });
+  });
 };

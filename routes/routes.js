@@ -57,7 +57,7 @@ module.exports = (app) => {
   app.get("/get_order_list", cors(), Orders.getAll);
   app.get("/get_order_info/:id",  cors(), Orders.getById);
   app.put("/update_order_info",  cors(), Orders.update);
-  app.delete("/delete_order_info/:id",  cors(), Orders.delete);
+  // app.delete("/delete_order_info/:id",  cors(), Orders.delete);
 
   app.post("/create_expense",  cors(), Expenses.create);
   app.get("/get_expenses_list",  cors(), Expenses.getAll);

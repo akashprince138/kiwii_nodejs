@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 06, 2026 at 11:15 AM
+-- Generation Time: Feb 07, 2026 at 10:45 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -157,10 +157,16 @@ INSERT INTO `menus` (`id`, `business_id`, `name`, `price`, `availability`, `tax`
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `business_id` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL,
   `menu_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `delivery_status` enum('ordered','delivered') NOT NULL,
+  `order_no` varchar(10) NOT NULL,
+  `customer_name` varchar(255) DEFAULT NULL,
+  `customer_mobile` varchar(255) DEFAULT NULL,
+  `subtotal` int(11) NOT NULL,
+  `tax` int(11) NOT NULL,
+  `discount` int(11) NOT NULL,
+  `grand_total` int(11) NOT NULL,
+  `order_status` enum('pending','paid','cancelled') NOT NULL,
+  `payment_method` enum('cash','upi','card','online') NOT NULL DEFAULT 'cash',
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -169,8 +175,25 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `business_id`, `customer_id`, `menu_id`, `quantity`, `delivery_status`, `createdAt`, `updatedAt`) VALUES
-(2, 1, 1, 1, 1, 'ordered', '2025-10-04 22:58:02', '2025-10-04 22:58:02');
+INSERT INTO `orders` (`id`, `business_id`, `menu_id`, `order_no`, `customer_name`, `customer_mobile`, `subtotal`, `tax`, `discount`, `grand_total`, `order_status`, `payment_method`, `createdAt`, `updatedAt`) VALUES
+(2, 1, 1, '', '1', NULL, 1, 0, 0, 0, '', 'cash', '2025-10-04 22:58:02', '2025-10-04 22:58:02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_items`
+--
+
+CREATE TABLE `order_items` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `menu_id` int(11) NOT NULL,
+  `menu_name` varchar(150) DEFAULT NULL,
+  `price` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `total` int(11) NOT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -388,6 +411,12 @@ ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `payments`
 --
 ALTER TABLE `payments`
@@ -462,6 +491,12 @@ ALTER TABLE `menus`
 --
 ALTER TABLE `orders`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payments`
